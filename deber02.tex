@@ -1,22 +1,330 @@
 \documentclass{article}
+\usepackage{amsmath}   % para \frac, \dfrac, ecuaciones alineadas, etc.
+\usepackage{amssymb}   % símbolos matemáticos adicionales
+\usepackage{amsfonts}  % fuentes matemáticas adicionales
+\usepackage{mathtools} % extensiones de amsmath, mejora el espaciado
+\usepackage[margin=2.5cm]{geometry} % márgenes cómodos para ver mejor el bloque
+\usepackage{lmodern}   % fuente moderna compatible con símbolos matemáticos
+\usepackage{siunitx}   % opcional, útil para valores numéricos y unidades
+
 \author{Francisco Ulloa}
 \date{\today}
 \begin{document}
-\textbf{1. Calcule los errores absoluto y relativo en las aproximaciones de $p$ y $p^*$ }  
+\begin{center}
+    {\Large \textbf{Escuela Politécnica Nacional}}\\[1em]
+    {\large \textbf{Asignatura:} Métodos Numéricos}\\[0.5em]
+    {\large \textbf{Nombre:} Francisco Ulloa}\\[0.5em]
+    {\large \textbf{Fecha:} 5 de noviembre de 2025}\\[2em]
+\end{center}
+
+\vspace{1em}
+\textbf{1. Calcule los errores absoluto y relativo en las aproximaciones de $p$ y $p^*$}  
 \\
 Error absoluto $= [p - p^*]$
 \\
-Error relativo $[\frac{p - p^*}{p}]$ 
+Error relativo $[\frac{p - p^*}{p}] * 100$ 
 \\ 
 \\
-\textbf{1. $p= \pi$ , $p^*=\frac{22}{7}$} 
-Error absoluto $= [p - p^*]$
+\textbf{a. $p= \pi$, $p^*=\frac{22}{7}$} 
+Error absoluto $= [p - p^*]$\\
 Error absoluto $= [3.141592654 - 3.142857143]$\\
 Error absoluto $= 1.264489267 \times 10^{-3}$
+\\ 
+\\
+Error relativo $[\frac{p - p^*}{p}] * 100$\\
+Error relativo $[\frac{\pi - \frac{22}{7}}{\pi}] * 100$\\
+Error relativo $= 4.026 \times 10^{-2} \%$
+\\
+\\
+\textbf{b. $p= \pi$, $p^*= 3.1416$} 
+Error absoluto $= [p - p^*]$\\
+Error absoluto $= [3.141592654 - 3.1416]$\\
+Error absoluto $= 7.3464102 \times 10^{-6}$
+\\ 
+\\
+Error relativo $[\frac{p - p^*}{p}] * 100$\\
+Error relativo $[\frac{\pi - 3.1416}{\pi}] * 100$\\
+Error relativo $= 2.338 \times 10^{-4} \%$
+\\
+\\
+\textbf{c. $p= e$, $p^*= 2.718$} 
+Error absoluto $= [p - p^*]$\\
+Error absoluto $= [2.718281828 - 2.718]$\\
+Error absoluto $= 2.81828459 \times 10^{-4}$
+\\ 
+\\
+Error relativo $[\frac{p - p^*}{p}] * 100$\\
+Error relativo $[\frac{e - 2.718}{e}] * 100$\\
+Error relativo $= 1.037 \times 10^{-2} \%$
+\\
+\\
+\textbf{d. $p= \sqrt{2}$, $p^*= 1.414$} 
+Error absoluto $= [p - p^*]$\\
+Error absoluto $= [1.414213562 - 1.414]$\\
+Error absoluto $= 2.135623731 \times 10^{-4}$
+\\
+\\
+Error relativo $[\frac{p - p^*}{p}] * 100$\\
+Error relativo $[\frac{\sqrt{2} - 1.414}{\sqrt{2}}] * 100$\\
+Error relativo $= 1.510 \times 10^{-2} \%$
+\\
+\\
+\textbf{2. Calcule los errores absoluto y relativo en las aproximaciones de $p$ y $p^*$ }\\
 
+\textbf{a. $p = e^{10}$, $p^* = 22000$} \\
+Error absoluto $= [p - p^*]$\\
+Error absoluto $= [22026.46579 - 22000]$\\
+Error absoluto $= 26.46579$\\
+\\
+Error relativo $= \left[\frac{p - p^*}{p}\right] \times 100$\\
+Error relativo $= \left[\frac{e^{10} - 22000}{e^{10}}\right] \times 100$\\
+Error relativo $= 0.1202 \%$
+\\
+\\
+\textbf{b. $p = 10^{\pi}$, $p^* = 1400$} \\
+Error absoluto $= [p - p^*]$\\
+Error absoluto $= [1385.455731 - 1400]$\\
+Error absoluto $= 14.544269$\\
+\\
+Error relativo $= \left[\frac{p - p^*}{p}\right] \times 100$\\
+Error relativo $= \left[\frac{10^{\pi} - 1400}{10^{\pi}}\right] \times 100$\\
+Error relativo $= 1.050 \%$
+\\
+\\
+\textbf{c. $p = 8!$, $p^* = 39900$} \\
+Error absoluto $= [p - p^*]$\\
+Error absoluto $= [40320 - 39900]$\\
+Error absoluto $= 420$\\
+\\
+Error relativo $= \left[\frac{p - p^*}{p}\right] \times 100$\\
+Error relativo $= \left[\frac{8! - 39900}{8!}\right] \times 100$\\
+Error relativo $= 1.042 \%$
+\\
+\\
+\textbf{d. $p = 9!$, $p^* = \sqrt{18\pi} \times \left(\frac{9}{e}\right)^{9}$} \\
+Error absoluto $= [p - p^*]$\\
+Error absoluto $= [362880 - 363046.421]$\\
+Error absoluto $= 166.421$\\
+\\
+Error relativo $= \left[\frac{p - p^*}{p}\right] \times 100$\\
+Error relativo $= \left[\frac{9! - \sqrt{18\pi} \times \left(\frac{9}{e}\right)^{9}}{9!}\right] \times 100$\\
+Error relativo $= 0.0458 \%$
+\\
+\\
+\textbf{Encuentre el intervalo más largo en el que se debe encontrar \textit{p*} para aproximarse a p con error relativo máximo de $10^{-4}$ para cada valor de \textit{p}.}\\
+\\
+\\
+Error relativo = $|\frac{p - p^*}{p}|$\\
+p* = $ \pm (\frac{Error relativo * p}{100} - p)$\\
+\\
 
+\textbf{a. $\pi$}
+p* = $ \pm (\frac{\textit{Error relativo} * p}{100} - p)$\\
+\\
+p* = $ \pm (\frac{10^{-4} * 3.141592654}{100} - 3.141592654)$\\
+Intervalo = $(-3.141589512, 3.141589512)$\\
+\\
+\textbf{b. $e$} \\
+p* = $\pm (\frac{10^{-4} * 2.718281828}{100} - 2.718281828)$\\
+\\
+Intervalo = $(-2.718279109,\; 2.718279109)$\\
+\\
+\textbf{c. $\sqrt{2}$}\\
+p* = $ \pm \left(\frac{10^{-4} * 1.414213562}{100} - 1.414213562\right)$\\
+\\
+Intervalo = $(-1.414212147,\; 1.414212147)$\\
+\\
+\textbf{d. $\sqrt[3]{7}$}\\
+p* = $ \pm (\frac{10^{-4} * 1.9129311827723891}{100} - 1.9129311827723891)$\\
+\\
+Intervalo = $(-1.912929269,\; 1.912929269)$
+\textbf{Use la aritmética de redondeo de tres dígitos para realizar lo siguiente. Calcule los errores absoluto y relativo con el valor exacto de terminado para por lo menos cinco dígitos}
+\textbf{a. $\frac{\frac{13}{14} - \frac{5}{7}}{2e - 5.4}$}\\
+\\
+$\frac{\frac{13}{14} - \frac{5}{7}}{2e - 5.4}$\\
+Valor real $ = 5.860620418$, Valor redondeado $ = 5.86$
+Error absoluto $= |5.860620418 - 5.86| = 6.20418 \times 10^{-4}$\\
+Error relativo $= \left|\frac{5.860620418 - 5.86}{5.860620418}\right| * 100 = 1.058 \times 10^{-2} \%$\\
+\\
+\textbf{b. $-10\pi + 6e - \frac{3}{61}$}\\
+Valor real $= -12.25619913$, Valor redondeado $= -12.3$\\
+Error absoluto $= |-12.25619913 - (-12.3)| = 0.04380087$\\
+Error relativo $= \left|\frac{-12.25619913 - (-12.3)}{-12.25619913}\right| * 100 = 0.357 \%$\\
+\\
+\textbf{c. $(\frac{2}{9}) * (\frac{9}{11})$ }\\
+Valor real $= 0.181818$, Valor redondeado $= 0.182$\\
+Error absoluto $= |0.181818 - 0.182| = 1.8182 \times 10^{-4}$\\
+Error relativo $= \left|\frac{0.181818 - 0.182}{0.181818}\right| * 100 = 1 \times 10^{-1} \%$\\
+\\
+\textbf{d. $\frac{\sqrt{13} + \sqrt{11}}{\sqrt{13} - \sqrt{11}}$}\\
+Valor real $= 7.5937511$, Valor redondeado $= 7.59$\\
+Error absoluto $= |7.5937511 - 7.59| = 3.7511 \times 10^{-3}$\\
+Error relativo $= \left|\frac{7.5937511 - 7.59}{7.5937511}\right| * 100 = 4.94 \times 10^{-2} \%$\\
+\\
+\\
+\textbf{5. Los primeros tres términos diferentes a cero de la serie de Maclaurin para la función arcotangente son: 
+$ x - (\frac{1}{2})*x^{3} + (\frac{1}{3})*x^{5}$
+Calcule los errores absoluto y relativo en las siguientes aproximaciones de $\pi$ mediante el polinomia en lugar del arcotangente 
+}\\
+\\
+\textbf{a. $ 4[\arctan\frac{1}{2} + arctan\frac{1}{3}]$}\\
+\\
+\textbf{Usando el polinomio}$P_5(x)=x-\dfrac{x^3}{3}+\dfrac{x^5}{5}$\textbf{ (hasta }$x^5$\textbf{):} \\
 
+Para $x=\frac{1}{2}$: \\
+$P_5\!\left(\dfrac{1}{2}\right)=\dfrac{1}{2}-\dfrac{(\tfrac{1}{2})^3}{3}+\dfrac{(\tfrac{1}{2})^5}{5}$\\
+$P_5\!\left(\frac{1}{2}\right)=\frac{1}{2}-\frac{1}{24}+\frac{1}{160}$\\
+$P_5\!\left(\frac{1}{2}\right)=0.5-0.041666666666666666666666666667+0.00625$\\
+$P_5\!\left(\frac{1}{2}\right)=0.464583333333333333333333333333$\\
 
+Para $x=\frac{1}{3}$: \\
+$P_5\!\left(\frac{1}{3}\right)=\frac{1}{3}-\frac{(\frac{1}{3})^3}{3}+\frac{(\frac{1}{3})^5}{5}$\\
+$P_5\!\left(\frac{1}{3}\right)=\frac{1}{3}-\frac{1}{81}+\frac{1}{1215}$\\
+$P_5\!\left(\frac{1}{3}\right)=0.333333333333333333333333333333-0.012345679012345679012345679012+\;0.000823045267489711942156490701$\\
+$P_5\!\left(\frac{1}{3}\right)=0.321810699588477366255144032922$\\
+
+Aproximación de $\pi$ usando $4(\arctan(1/2)+\arctan(1/3))$ con $P_5$: \\
+$\pi_{\text{approx}}=4\big(P_5(\frac{1}{2})+P_5(\frac{1}{3})\big)$\\
+$\pi_{\text{approx}}=4\big(0.464583333333333333333333333333+0.321810699588477366255144032922\big)$\\
+$\pi_{\text{approx}}=3.14557613168724279835390946502$\\
+
+Errores (comparando con $\pi=3.141592653589793238462643383279\ldots$):\\
+Error absoluto: \\
+$|\pi-\pi_{\text{approx}}|=|3.141592653589793238462643383279-3.14557613168724279835390946502|$\\
+$|\pi-\pi_{\text{approx}}|=0.003983478097449559891266081741$\\
+
+Error relativo (\%): \\
+$\displaystyle \frac{|\pi-\pi_{\text{approx}}|}{\pi}\times 100\% = 0.126798045981479241432532204002\%$
+\\
+\\
+\textbf{Usando el polinomio truncado }$P_5(x)=x-\dfrac{x^3}{3}+\dfrac{x^5}{5}$\textbf{ (hasta }$x^5$\textbf{):} \\
+
+Para $x=\dfrac{1}{5}$: \\
+$P_5\!\left(\dfrac{1}{5}\right)=\dfrac{1}{5}-\dfrac{(\tfrac{1}{5})^3}{3}+\dfrac{(\tfrac{1}{5})^5}{5}$\\
+$P_5\!\left(\dfrac{1}{5}\right)=0.2-\dfrac{1}{375}+\dfrac{1}{15625}$\\
+$P_5\!\left(\dfrac{1}{5}\right)=0.2-0.0026666666666667+0.000064$\\
+$P_5\!\left(\dfrac{1}{5}\right)=0.1973973333333333$\\
+
+Para $x=\dfrac{1}{239}$: \\
+$P_5\!\left(\dfrac{1}{239}\right)=\dfrac{1}{239}-\dfrac{(\tfrac{1}{239})^3}{3}+\dfrac{(\tfrac{1}{239})^5}{5}$\\
+$P_5\!\left(\dfrac{1}{239}\right)=0.0041841004184100-\dfrac{1}{3(239)^3}+\dfrac{1}{5(239)^5}$\\
+$P_5\!\left(\dfrac{1}{239}\right)=0.0041841004184100-2.43971594\times10^{-8}+2.60628853\times10^{-13}$\\
+$P_5\!\left(\dfrac{1}{239}\right)=0.0041840760213$\\
+
+Aproximación de $\pi$ usando $16\arctan(1/5)-4\arctan(1/239)$ con $P_5$: \\
+$\pi_{\text{approx}} = 16P_5(\tfrac{1}{5}) - 4P_5(\tfrac{1}{239})$\\
+$\pi_{\text{approx}} = 16(0.1973973333333333) - 4(0.0041840760213)$\\
+$\pi_{\text{approx}} = 3.151341333333333 - 0.0167363040852$\\
+$\pi_{\text{approx}} = 3.1346050292481$\\
+
+Errores (comparando con $\pi=3.141592653589793238\ldots$):\\
+Error absoluto: \\
+$|\pi-\pi_{\text{approx}}|=|3.141592653589793238-3.1346050292481|$\\
+$|\pi-\pi_{\text{approx}}|=0.006987624341693238$\\
+
+Error relativo (\%): \\
+$\displaystyle \frac{|\pi-\pi_{\text{approx}}|}{\pi}\times 100\% = 0.2224\%$\\
+\\
+\\
+\textbf{El número e se puede definir por medio de $\displaystyle e = \sum_{n=0}^{\infty} (\frac{1}{n!})$, donde $n! =  n(n-1)...2*1$ para $n!=0$ y 
+$0 ! = 1.$ Calcule los errores absoluto y relativo en la siguiente aproximación de $e$: }\\
+\\
+\\
+\textbf{a. $ \displaystyle \sum_{n=0}^{5}\frac{1}{n!} $} \\
+
+Aproximación: \\
+$S_5 = \displaystyle\sum_{n=0}^{5}\frac{1}{n!} = 1 + \frac{1}{1} + \frac{1}{2} + \frac{1}{6} + \frac{1}{24} + \frac{1}{120}$\\
+$S_5 = 2.71667$\\
+
+Valor real: \\
+$e = 2.71828183$\\
+
+Error absoluto: \\
+$|e - S_5| = |2.71828183 - 2.71667| = 0.00161$\\
+
+Error relativo (\%): \\
+$\displaystyle \frac{|e - S_5|}{e} \times 100 = 0.0594\%$\\
+\\
+\textbf{b. $ \displaystyle \sum_{n=0}^{10}\frac{1}{n!} $} \\
+
+Aproximación: \\
+$S_{10} = \displaystyle\sum_{n=0}^{10}\frac{1}{n!} = 1 + \frac{1}{1} + \frac{1}{2} + \cdots + \frac{1}{10!}$\\
+$S_{10} = 2.71828$\\
+
+Error absoluto: \\
+$|e - S_{10}| = |2.71828183 - 2.71828| = 0.00000$\\
+
+Error relativo (\%): \\
+$\displaystyle \frac{|e - S_{10}|}{e} \times 100 = 0.0000010\%$\\
+\\
+
+\textbf{Suponga que los dos puntos $(x_0, y_0)$ y $(x_1, y_1)$ se encuentran en línea recta con $y_1!= y_0$. Existen dos fórmulas para calcualr la intersección con $x$ de la línea:
+$\displaystyle x = \frac{x_0y_1 - x_1y_0}{y_1 - y_0}$ y $ \displaystyle x_ 0= \frac{(x_1 - y_0)y_0}{y_1 - y_0}$}\\
+\\
+\\
+\textbf{a. Use los datos $ \displaystyle (x_0, y_0) = (1.31, 3.24)$ y $\displaystyle (x_1, y_1) = (1.93, 5.76)$
+y la aritmética de redondeo de tres dígitos para calcular la intersección con $x$ de ambas maneras. ¿Cuál método es mejor y por qué?}\\
+\\
+\textbf{Suponga que los dos puntos $(x_0,y_0)$ y $(x_1,y_1)$ están en línea recta con $y_1\neq y_0$.} \\
+Existen dos fórmulas para calcular la intersección con $x$ (intersección con el eje $x$, es decir $y=0$): \\
+$\displaystyle x = \frac{x_0y_1 - x_1y_0}{y_1 - y_0}$ \qquad y \qquad 
+$\displaystyle x = x_0 - \frac{(x_1 - x_0)\,y_0}{y_1 - y_0}$ \\
+
+\textbf{Datos:} $x_0=1.31,\; y_0=3.24,\; x_1=1.93,\; y_1=5.76$. \\
+Usaremos aritmética de redondeo a \textbf{3 cifras significativas} en cada paso.
+
+\bigskip
+
+\textbf{Método A:} $\displaystyle x = \frac{x_0y_1 - x_1y_0}{y_1 - y_0}$ \\
+
+Calculemos paso a paso (redondeando cada resultado a 3 cifras significativas):
+
+$y_1-y_0 = 5.76 - 3.24 = 2.52$ \quad (3 cifras: $2.52$).\\
+
+$x_0y_1 = 1.31\times 5.76 = 7.5456 \;\Rightarrow$ redondeo a 3 cifras: $7.55$.\\
+
+$x_1y_0 = 1.93\times 3.24 = 6.2532 \;\Rightarrow$ redondeo a 3 cifras: $6.25$.\\
+
+Numerador: $x_0y_1 - x_1y_0 = 7.55 - 6.25 = 1.30$ \quad (3 cifras: $1.30$).\\
+
+División: $\displaystyle x_A = \frac{1.30}{2.52} = 0.515873\ldots \;\Rightarrow$ redondeo a 3 cifras: $\boxed{0.516}$.\\
+
+\bigskip
+
+\textbf{Método B:} $\displaystyle x = x_0 - \frac{(x_1 - x_0)\,y_0}{y_1 - y_0}$ \\
+
+Paso a paso (redondeando a 3 cifras en cada paso):
+
+$x_1-x_0 = 1.93 - 1.31 = 0.62$ \quad (3 cifras: $0.62$).\\
+
+$(x_1-x_0)\,y_0 = 0.62\times 3.24 = 2.0088 \;\Rightarrow$ redondeo a 3 cifras: $2.01$.\\
+
+División: $\displaystyle \frac{2.01}{2.52} = 0.797619\ldots \;\Rightarrow$ redondeo a 3 cifras: $0.798$.\\
+
+Resta final: $x_B = 1.31 - 0.798 = 0.512$ \quad (3 cifras: $\boxed{0.512}$).\\
+
+\bigskip
+
+\textbf{Comparación con el valor exacto (sin redondeo intermedio):} \\
+Valor exacto (calc. con precisión completa): \\
+$\displaystyle x_{\text{exacto}}=\frac{1.31\cdot 5.76 - 1.93\cdot 3.24}{5.76-3.24}
+=\frac{7.5456-6.2532}{2.52}=\frac{1.2924}{2.52}=0.512619\ldots$ \\
+
+Errores absolutos de las aproximaciones redondeadas: \\
+$|x_A-x_{\text{exacto}}|=|0.516-0.512619\ldots| \approx 0.00338$\\
+$|x_B-x_{\text{exacto}}|=|0.512-0.512619\ldots| \approx 0.00062$\\
+
+\bigskip
+
+\textbf{Conclusión — ¿qué método es mejor y por qué?} \\
+
+El método B ($x=x_0-\dfrac{(x_1-x_0)y_0}{y_1-y_0}$) produce una aproximación mucho más cercana al valor exacto en aritmética de 3 cifras significativas ($0.512$ frente a $0.516$). \\
+
+La razón es la propagación del error por \emph{subtracción entre cantidades de orden similar} en el método A: al calcular $x_0y_1 - x_1y_0$ se restan dos números relativamente grandes y cercanos ($\sim 7.55$ y $\sim 6.25$) dando un numerador pequeño ($\sim 1.29$). Esa resta magnifica los errores de redondeo (cancelación numérica). \\
+
+El método B evita esa resta directa de dos productos grandes: primero se toma la diferencia $x_1-x_0$ (un número pequeño, aquí $0.62$), se escala y se sustrae de $x_0$. En práctica, esto reduce la cancelación numérica y la pérdida de precisión en aritmética con pocas cifras significativas, por eso B es preferible en este caso.
+\\
+\\
 \end{document}
 
 
