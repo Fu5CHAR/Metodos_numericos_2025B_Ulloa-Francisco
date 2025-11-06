@@ -1,0 +1,411 @@
+\documentclass{article}
+\usepackage{amsmath}   % para \frac, \dfrac, ecuaciones alineadas, etc.
+\usepackage{amssymb}   % símbolos matemáticos adicionales
+\usepackage{amsfonts}  % fuentes matemáticas adicionales
+\usepackage{mathtools} % extensiones de amsmath, mejora el espaciado
+\usepackage{enumitem}  % para listas con etiquetas personalizadas
+\usepackage[margin=2.5cm]{geometry} % márgenes cómodos para ver mejor el bloque
+\usepackage{lmodern}   % fuente moderna compatible con símbolos matemáticos
+\usepackage{siunitx}   % opcional, útil para valores numéricos y unidades
+
+\author{Francisco Ulloa}
+\date{\today}
+\begin{document}
+\begin{center}
+    {\Large \textbf{Escuela Politécnica Nacional}}\\[1em]
+    {\large \textbf{Asignatura:} Métodos Numéricos}\\[0.5em]
+    {\large \textbf{Nombre:} Francisco Ulloa}\\[0.5em]
+    {\large \textbf{Fecha:} 5 de noviembre de 2025}\\[2em]
+\end{center}
+
+\textbf{1. Utilice aritmética de corte de tres dígitos para calcular las siguientes sumas.
+Para cada parte, ¿qué método es más preciso y por qué?}
+
+\textbf{a.  $\displaystyle\sum_{i=1}^{10} (\frac{1}{i^2})$ primero por $\displaystyle\frac{1}{1} + \frac{1}{4} + ... +\frac{1}{100}$ y luego por $\displaystyle\frac{1}{100} + \frac{1}{81} + ... + \frac{1}{1}$}\\
+\\
+\\
+\bigskip $\displaystyle\sum_{i=1}^{10}\frac{1}{i^2}$ \\
+
+Usaremos corte a 3 cifras significativas en cada suma parcial. \\
+
+\textbf{Orden directo (i=1..10):} \\
+Términos: \\
+$\frac{1}{1^2}=1,\;\frac{1}{2^2}=0.25,\;\frac{1}{3^2}=0.111111\ldots,\;\frac{1}{4^2}=0.0625,\;\frac{1}{5^2}=0.04,$ \\
+$\frac{1}{6^2}=0.027777\ldots,\;\frac{1}{7^2}=0.020408\ldots,\;\frac{1}{8^2}=0.015625,\;\frac{1}{9^2}=0.0123456\ldots,\;\frac{1}{10^2}=0.01$\\
+
+Suma parcial (con corte a 3 cifras significativas después de cada adición):\\
+$S_1 = 1$\\
+$S_2 = \operatorname{chop}_3(1 + 0.25) = 1.25$\\
+$S_3 = \operatorname{chop}_3(1.25 + 0.111111\ldots) = 1.36$\\
+$S_4 = \operatorname{chop}_3(1.36 + 0.0625) = 1.42$\\
+$S_5 = \operatorname{chop}_3(1.42 + 0.04) = 1.46$\\
+$S_6 = \operatorname{chop}_3(1.46 + 0.027777\ldots) = 1.48$\\
+$S_7 = \operatorname{chop}_3(1.48 + 0.020408\ldots) = 1.50$\\
+$S_8 = \operatorname{chop}_3(1.50 + 0.015625) = 1.51$\\
+$S_9 = \operatorname{chop}_3(1.51 + 0.0123456\ldots) = 1.52$\\
+$S_{10} = \operatorname{chop}_3(1.52 + 0.01) = \boxed{1.53}$ \\
+
+\smallskip
+\textbf{Orden inverso (i=10..1):} \\
+Términos en orden inverso: $0.01,\;0.0123456\ldots,\;0.015625,\;\dots,\;0.25,\;1$\\
+
+Suma parcial (corte 3 cifras después de cada adición):\\
+$S_1' = 0.01$\\
+$S_2' = \operatorname{chop}_3(0.01 + 0.0123456\ldots) = 0.022$\\
+$S_3' = \operatorname{chop}_3(0.022 + 0.015625) = 0.037$\\
+$S_4' = \operatorname{chop}_3(0.037 + 0.020408\ldots) = 0.057$\\
+$S_5' = \operatorname{chop}_3(0.057 + 0.027777\ldots) = 0.084$\\
+$S_6' = \operatorname{chop}_3(0.084 + 0.04) = 0.124$\\
+$S_7' = \operatorname{chop}_3(0.124 + 0.0625) = 0.186$\\
+$S_8' = \operatorname{chop}_3(0.186 + 0.111111\ldots) = 0.297$\\
+$S_9' = \operatorname{chop}_3(0.297 + 0.25) = 0.547$\\
+$S_{10}' = \operatorname{chop}_3(0.547 + 1) = \boxed{1.54}$ \\
+
+\smallskip
+Valores de referencia (alta precisión): \\
+$\displaystyle \sum_{i=1}^{10}\frac{1}{i^2} = 1.54976773\ldots$ \\
+
+Errores absolutos: \\
+Orden directo: $|1.54976773 - 1.53| \approx 0.01977$ \\
+Orden inverso: $|1.54976773 - 1.54| \approx 0.00977$ \\
+
+\textbf{Conclusión a):} la \textbf{orden inverso} (sumar primero los términos más pequeños) es más preciso. 
+Porque la aritmética de corte provoca pérdida de precisión cuando se suman números de tamaños muy distintos. Sumar de menor a mayor reduce esa pérdida acumulada.
+\bigskip
+\textbf{b. $\displaystyle\sum_{i=1}^{10} (\frac{1}{i^3})$ primero por $\displaystyle \frac{1}{1} + \frac{1}{8} + \frac{1}{27} + ... + \frac{1}{1000}$ y luego por $\displaystyle\frac{1}{1000} + \frac{1}{729} + ... + \frac{1}{1}$}\\
+\\
+\textbf{b. } $\displaystyle\sum_{i=1}^{10}\frac{1}{i^3}$ \\
+
+\textbf{Orden directo (i=1..10):} términos: \\
+$1,\; \frac{1}{2^3}=0.125,\; \frac{1}{3^3}=0.037037\ldots,\; \frac{1}{4^3}=0.015625,\; \dots,\; \frac{1}{10^3}=0.001$\\
+
+Suma parcial (corte 3 cifras):\\
+$S_1 = 1$\\
+$S_2 = \operatorname{chop}_3(1 + 0.125) = 1.12$\\
+$S_3 = \operatorname{chop}_3(1.12 + 0.037037\ldots) = 1.15$\\
+$S_4 = \operatorname{chop}_3(1.15 + 0.015625) = 1.16$\\
+$S_5 = \operatorname{chop}_3(1.16 + 0.008) = 1.16$\\
+$S_6 = \operatorname{chop}_3(1.16 + 0.0046296\ldots) = 1.16$\\
+$S_7 = \operatorname{chop}_3(1.16 + 0.00291545\ldots) = 1.16$\\
+$S_8 = \operatorname{chop}_3(1.16 + 0.001953125) = 1.16$\\
+$S_9 = \operatorname{chop}_3(1.16 + 0.0013717\ldots) = 1.16$\\
+$S_{10} = \operatorname{chop}_3(1.16 + 0.001) = \boxed{1.16}$ \\
+
+\smallskip
+\textbf{Orden inverso (i=10..1):} términos pequeños primero \\
+Suma parcial (corte 3 cifras):\\
+$S_1' = 0.001$\\
+$S_2' = \operatorname{chop}_3(0.001 + 0.0013717\ldots) = 0.002$\\
+$S_3' = \operatorname{chop}_3(0.002 + 0.001953125) = 0.003$\\
+$S_4' = \operatorname{chop}_3(0.003 + 0.00291545\ldots) = 0.005$\\
+$S_5' = \operatorname{chop}_3(0.005 + 0.0046296\ldots) = 0.009$\\
+$S_6' = \operatorname{chop}_3(0.009 + 0.008) = 0.017$\\
+$S_7' = \operatorname{chop}_3(0.017 + 0.015625) = 0.032$\\
+$S_8' = \operatorname{chop}_3(0.032 + 0.037037\ldots) = 0.069$\\
+$S_9' = \operatorname{chop}_3(0.069 + 0.125) = 0.194$\\
+$S_{10}' = \operatorname{chop}_3(0.194 + 1) = \boxed{1.19}$ \\
+
+\smallskip
+Valor real: \\
+$\displaystyle \sum_{i=1}^{10}\frac{1}{i^3} = 1.19753199\ldots$ \\
+
+Errores absolutos: \\
+Orden directo: $|1.19753199 - 1.16| \approx 0.03753$ \\
+Orden inverso: $|1.19753199 - 1.19| \approx 0.00753$ \\
+
+\textbf{Conclusión b):} nuevamente \textbf{sumar de menor a mayor} (orden inverso) es más preciso por la misma razón: minimiza la pérdida de información del término pequeño al sumarlo a acumulados grandes cuando se aplica corte (truncamiento).
+\\
+\textbf{2. La serie de Maclaurin para la función arcotangenete converge para $\displaystyle -1 < x <= 1 $ y está dada por
+$\displaystyle \arctan(x) = \lim_{n\to\infty} P_n(x) = \lim_{n\to\infty}\sum_{i=1}^{n} (-1)^{i+1} \frac{x^{2i-1}}{2i-1}$}\\
+\\
+\\
+\textbf{a. Utilice el hecho de que $\tan(\frac{\pi}{4}=1)$ para determinar el número n de términos de la serie que se necesita
+sumar para garantizar  que $\displaystyle |4P_n(1) - \pi| < 10^{-3}$}\\
+\\
+\\
+% --------------------------
+% Cálculos: número de términos necesarios para arctan(1)
+% --------------------------
+\textbf{Serie:} \\
+La serie de Maclaurin para $\arctan(x)$ es
+$$
+\arctan(x)=\sum_{i=1}^{\infty} (-1)^{i+1}\frac{x^{2i-1}}{2i-1}.
+$$
+Para $x=1$ obtenemos
+$$
+\arctan(1)=\sum_{i=1}^{\infty} (-1)^{i+1}\frac{1}{2i-1}=\frac{\pi}{4}.
+$$
+
+\bigskip
+\textbf{Resto por criterio de serie alternante:} \\
+Si $P_n(1)=\sum_{i=1}^{n} (-1)^{i+1}\frac{1}{2i-1}$ es el polinomio truncado de orden $n$, entonces el error de truncamiento satisface
+$$
+\left|\arctan(1)-P_n(1)\right|\le \frac{1}{2n+1},
+$$
+porque el siguiente término (en magnitud) es $\dfrac{1}{2n+1}$ y la serie es alternante con términos decrecientes en magnitud.
+
+Multiplicando por $4$ (ya que usamos $4P_n(1)$ para aproximar $\pi$) obtenemos la cota:
+$$
+\left| \pi - 4P_n(1)\right| \le \frac{4}{2n+1}.
+$$
+
+\bigskip
+\textbf{a) Condición }$\displaystyle \left|4P_n(1)-\pi\right|<10^{-3}$: \\
+
+Usamos la cota anterior y exigimos
+$$
+\frac{4}{2n+1} < 10^{-3}.
+$$
+
+Resolviendo:
+$$
+2n+1 > \frac{4}{10^{-3}} = 4000 \quad\Longrightarrow\quad n > \frac{4000-1}{2} = 1999.5.
+$$
+
+Por lo tanto el menor entero $n$ que cumple la desigualdad es
+$$
+\boxed{n = 2000.}
+$$
+
+\bigskip
+
+\textbf{b. El elnguaje de programación C++ requiere que el valor de $\pi$ se encuentre dentro de  $10^{-10}$.
+¿Cuántos términos de la serie se necessitan sumar para obtener este grado de presición?}\\
+\textbf{b) Condición }$\displaystyle \left|4P_n(1)-\pi\right|<10^{-10}$: \\
+Usamos la misma cota:
+$$
+\frac{4}{2n+1} < 10^{-10}.
+$$
+
+Resolviendo:
+$$
+2n+1 > \frac{4}{10^{-10}} = 4\times 10^{10} \quad\Longrightarrow\quad n > \frac{4\cdot 10^{10}-1}{2}.
+$$
+
+Por lo tanto el menor entero $n$ que satisface la condición es
+$$
+\boxed{n = 20\,000\,000\,000.}
+$$
+
+\textbf{Observación:} sumar $20\,000\,000\,000$ términos es prácticamente inviable en una implementación directa (tiempo y memoria), pero la fórmula anterior nos da el número teórico de términos requeridos por el criterio alternante.
+\\
+\textbf{Pseudocódigo (usar la cota alternante para calcular $n$):} \\
+\begin{verbatim}
+Entrada: tol  # tolerancia deseada para |4 P_n(1) - pi|
+Salida: n_min # número mínimo de términos necesarios
+
+# Usando la cota |pi - 4 P_n(1)| <= 4/(2n+1)
+1. Calcular N_real = (4 / tol - 1) / 2
+2. n_min = ceil(N_real)
+3. Retornar n_min
+\end{verbatim}
+
+\bigskip
+
+\textbf{Pseudocódigo (si además se desea sumar realmente hasta n):} \\
+
+\begin{verbatim}
+Entrada: n  # número de términos a sumar
+Salida: Pn = sum_{i=1}^n (-1)^{i+1} / (2i-1)
+
+1. Pn = 0
+2. for i = 1 to n do
+3.     term = ((-1)^(i+1)) / (2*i - 1)
+4.     Pn = Pn + term
+5. end for
+6. Retornar Pn
+\end{verbatim}
+\textbf{3. Otra fórmula para calcular $\pi$ se puede deducir a partir de la identidad $\displaystyle \frac{\pi}{4} = 4\arctan\frac{1}{5} - \arctan\frac{1}{239}$.
+Determine el número de términos que se deben sumar para garantizar una aproximación de $\pi$ dentro de $10^{-3}$.}\\
+\\
+\textbf{4. Compare los siguientes tres algoritmos. ¿Cuándo es correcto el algoritmo de la parte 1a?}\\
+\textbf{a.}\\
+\\ENTRADA $n,x_1,x_2,...,x_n$.\\
+\\SALIDA PRODUCT.\\
+\textit{Paso 1} Determine PRODUCT = 0\\
+\textit{Paso 2} Para $i=1,2,...,n$ haga\\
+\begin{center}
+    Determine PRODUCT = PRODUCT $ * x_i$\\
+\end{center}
+\textit{Paso 3} SALIDA PRODUCT\\
+\begin{center}
+    PARE
+\end{center}
+\textbf{b.}\\
+ENTRADA $n,x_1,x_2,...,x_n$.\\
+\\SALIDA PRODUCT.\\
+\textit{Paso 1} Determine PRODUCT = 1\\
+\textit{Paso 2} Para $i=1,2,...,n$ haga\\
+\begin{center}
+    Set PRODUCT = PRODUCT $* x_i$\\
+\end{center}
+\textit{Paso 3} SALIDA PRODUCT\\
+\begin{center}
+    PARE    
+\end{center}
+\textbf{c.}\\
+ENTRADA $n,x_1,x_2,...,x_n$.\\
+\\SALIDA PRODUCT.\\
+\textit{Paso 1} Determine PRODUCT = 1\\
+\textit{Paso 2} Para $i=1,2,...,n$ haga\\
+\begin{center}
+si $x_i = 0$ entonces determine PRODUCT = 0
+    \\SALIDA PRODUCT;
+    \\PARE\\
+Determine PRODUCT = PRODUCT $* x_i$\\
+\end{center}
+\textit{Paso 3} SALIDA PRODUCT\\
+\begin{center}
+    PARE
+\end{center}
+Al comparar los tres algoritmos tenemos que:\\
+-El algoritmo \textit{a} en todos los casos da como resultado 0 sin importar los valores de $x_i$.\\
+-El segundo y tercer algoritmo obtinenen resultados iguales, pero este último mejora al algoritmo \textit{b} porque si alguno de los $x_i$ es 0, el producto total será 0 y no es necesario seguir multiplicando.\\
+-Finalmente, el algoritmo \textit{a} dará un resultado correcto solo y solo si todos los valores de $x_i$ son iguales a 0 o si se espera obtener un 0 por respuesta.\\
+\\
+\textbf{5. a. ¿Cuántas multiplicaciones y sumas se requieren para determinar una suma de la forma 
+\begin{center}
+    $\sum_{i=1}^{n}*\sum_{j=1}^{i}a_ib_j$?
+\end{center}}
+\textbf{Ejercicio 5.}\\
+\textbf{a) Cálculo del número de operaciones} \\
+\[
+S=\sum_{i=1}^{n}\Big(\sum_{j=1}^{i} a_i b_j\Big)
+\]
+
+Para cada $i$ fijo hay $i$ multiplicaciones y $(i-1)$ sumas. Al final se suman los $n$ resultados parciales:
+
+\[
+\text{Multiplicaciones}=\sum_{i=1}^{n} i = \frac{n(n+1)}{2},
+\]
+\[
+\text{Sumas}=\sum_{i=1}^{n} (i-1) + (n-1)=\frac{n^2 + n - 2}{2}.
+\]
+
+\bigskip
+\textbf{b. Modifique la suma en la parte a. un formato equivalente que reduzca el número de cálculos}\\
+\textbf{b) Forma equivalente que reduce cálculos} \\
+\[
+S=\sum_{i=1}^{n}\Big(a_i\sum_{j=1}^{i} b_j\Big).
+\]
+
+Definiendo las sumas prefijo $B_i=\sum_{j=1}^{i} b_j$, se obtiene:
+\[
+S=\sum_{i=1}^{n} a_i B_i.
+\]
+
+\[
+\text{Multiplicaciones}=n,\qquad \text{Sumas}=2n-2.
+\]
+
+\bigskip
+Otra forma equivalente es:
+\[
+S=\sum_{j=1}^{n} b_j\Big(\sum_{i=j}^{n} a_i\Big).
+\]
+\\
+\textbf{6. Escriba un algoritmo para sumar la serie finita $\displaystyle\sum_{i=1}^{n}x_i$ en orden inverso}\\
+\\
+\textbf{Algoritmo 6: Suma de una serie en orden inverso}\\
+
+\textit{Entrada:} $n, x_1, x_2, ..., x_n$\\
+\textit{Salida:} SUMA\\
+
+\textit{Paso 1:} Determine SUMA = 0\\
+\textit{Paso 2:} Para $i = n, n-1, ..., 1$ haga\\
+\begin{center}
+    SUMA = SUMA + $x_i$\\
+\end{center}
+\textit{Paso 3:} SALIDA SUMA\\
+\textit{Paso 4:} PARE
+\\
+\textbf{7. Las ecuaciones 1.2 y 1.3 en la sección 1.2 proporcionan formas alternativas para las raíces $x_1$ y $x_2$ de
+$ax^2 + bx + c = 0$. Construya un algoritmo con entrada a,b,c y salida $x_1,x_2$ que calcule las raíces $x_1,x_2$
+(que pueden ser iguales con conjugados complejos) mediante fórmula para cada raíz}\\
+\\
+\textbf{Algoritmo 7: Determinación de las raíces de un polinomio cuadrático}\\
+
+\textit{Entrada:} $a, b, c$\\
+\textit{Salida:} $x_1, x_2$\\
+
+\textit{Paso 1:} Calcular el discriminante $D = b^2 - 4ac$\\
+
+\textit{Paso 2:} Si $D \ge 0$ entonces\\
+\begin{enumerate}[label=\alph*)]
+    \item Si $b \ge 0$ entonces
+    \begin{center}
+        $x_1 = \dfrac{2c}{-b - \sqrt{D}}$ \hspace{1cm} \textit{(raíz más pequeña, fórmula (1.3))}\\
+        $x_2 = \dfrac{-b - \sqrt{D}}{2a}$ \hspace{1cm} \textit{(raíz más grande, fórmula (1.2))}
+    \end{center}
+    \item Sino
+    \begin{center}
+        $x_1 = \dfrac{-b + \sqrt{D}}{2a}$ \hspace{1cm} \textit{(raíz más grande, fórmula (1.2))}\\
+        $x_2 = \dfrac{2c}{-b + \sqrt{D}}$ \hspace{1cm} \textit{(raíz más pequeña, fórmula (1.3))}
+    \end{center}
+\end{enumerate}
+
+\textit{Paso 3:} Si $D < 0$ entonces\\
+\begin{center}
+    parte\_real = $\dfrac{-b}{2a}$\\
+    parte\_imaginaria = $\dfrac{\sqrt{|D|}}{2a}$\\
+    $x_1 =$ parte\_real $+$ parte\_imaginaria$i$\\
+    $x_2 =$ parte\_real $-$ parte\_imaginaria$i$
+\end{center}
+
+\textit{Paso 4:} SALIDA $x_1, x_2$\\
+\textit{Paso 5:} PARE
+\\
+\\
+
+\textbf{8. Suponga que
+\begin{center}
+    $\displaystyle \frac{1-2x}{1-x+x^2} + \frac{2x-4x^3-8x^7}{1-x^4+x^8} + \frac{1+2x}{1+x+x^2}$.
+\end{center}
+para $x < 1 $ y si $ x = 0.25$. Escriba y ejecute un algoritmo que determine el número de términos necesarios en el lado izquierdo de la ecuación de tal forma que el lado izquierdo
+difiera  del lado derecho en menos de $10^{-6}$.}\\
+\\
+\\
+\textbf{Algoritmo 8: Determinación del número de términos necesarios en una serie}\\
+
+\textit{Entrada:} $x$, Diferencia\\
+\textit{Salida:} $n$\\
+
+\textit{Paso 1:} Asignar $x = 0.25$, Diferencia = $10^{-6}$\\
+\textit{Paso 2:} Calcular lado derecho: 
+\[
+\text{right\_side} = \frac{1 + 2x}{1 + x + x^2}
+\]
+\textit{Paso 3:} Inicializar suma\_izquierda = 0, $n = 0$\\
+
+\textit{Paso 4:} Mientras sea verdadero, hacer:\\
+\begin{enumerate}[label=\alph*)]
+    \item Calcular numerador: 
+    \[
+    \text{numerador} = 2^n x^{2^n - 1} - 2^{n+1} x^{2^{n+1} - 1}
+    \]
+    \item Calcular denominador:
+    \[
+    \text{denominador} = 1 - x^{2^n} + x^{2^{n+1}}
+    \]
+    \item Calcular término:
+    \[
+    \text{término} = \frac{\text{numerador}}{\text{denominador}}
+    \]
+    \item Actualizar suma:
+    \[
+    \text{suma\_izquierda} = \text{suma\_izquierda} + \text{término}
+    \]
+    \item Si $|\text{suma\_izquierda} - \text{right\_side}| < \text{Diferencia}$, entonces
+    \begin{center}
+        SALIR del ciclo
+    \end{center}
+    \item Incrementar $n = n + 1$
+\end{enumerate}
+
+\textit{Paso 5:} Mostrar en pantalla:
+\[
+\text{``Se necesitan } n + 1 \text{ términos para que la suma difiera del lado derecho en menos de } 10^{-6}.'' 
+\]
+\textit{Paso 6:} PARE
+\\
+\end{document}
