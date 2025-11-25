@@ -1,0 +1,11 @@
+[
+    {
+        "usuario": "Sebas",
+        "deposito_inicial": 100.0,
+        "valor_final_deseado": 372.79,
+        "aporte": 5.0,
+        "periodo": "semanal",
+        "duracion": 51,
+        "tasa_interes_anual": 8.1266
+    }
+]
