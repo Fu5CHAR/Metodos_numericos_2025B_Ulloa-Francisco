@@ -237,3 +237,4 @@ def separar_m_aumentada(Ab: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         logging.debug("Convirtiendo Ab a numpy array")
         Ab = np.array(Ab, dtype=float)
     return Ab[:, :-1], Ab[:, -1].reshape(-1, 1)
+    
