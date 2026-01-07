@@ -275,7 +275,7 @@ def eliminacion_gaussiana_redondeo32bits(A: np.ndarray | list[list[float | int]]
 
     if not isinstance(A, np.ndarray):
         logging.debug("Convirtiendo A a numpy array.")
-        A = np.array(A, dtype=float)
+        A = np.array(A, dtype=np.float32)
 
     assert A.shape[0] == A.shape[1] - 1, \
         "La matriz A debe ser de tamaño n-by-(n+1)."
@@ -347,7 +347,77 @@ def calcular_error(vec_exacto, vec_aproximado):
     return
 
 
+import logging
+from sys import stdout
+from datetime import datetime
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(asctime)s][%(levelname)s] %(message)s",
+    stream=stdout,
+    datefmt="%m-%d %H:%M:%S",
+)
+logging.info(datetime.now())
+
+import numpy as np
+def gauss_jordan_redondeo32bits(A: np.ndarray | list[list[float | int]]) -> np.ndarray:
+    """Resuelve un sistema de ecuaciones lineales mediante el método de Gauss-Jordan
+    con contadores de operaciones aritméticas.
+    """
+    sumas_restas = 0
+    mult_div = 0
+
+    if not isinstance(A, np.ndarray):
+        logging.debug("Convirtiendo A a numpy array.")
+        A = np.array(A, dtype=np.float32)
+
+    assert A.shape[0] == A.shape[1] - 1, \
+        "La matriz A debe ser de tamaño n-by-(n+1)."
+
+    n = A.shape[0]
+
+    for i in range(n):
+        # ------------------------------------------------
+        # Encontrar pivote
+        # ------------------------------------------------
+        p = None
+        for pi in range(i, n):
+            if A[pi, i] != 0:
+                if p is None or abs(A[pi, i]) < abs(A[p, i]):
+                    p = pi
+
+        if p is None:
+            raise ValueError("No existe solución única.")
+
+        if p != i:
+            A[[i, p], :] = A[[p, i], :]
+
+        # ------------------------------------------------
+        # Normalizar fila pivote
+        # ------------------------------------------------
+        pivote = A[i, i]
+        for k in range(i, n + 1):
+            A[i, k] = np.float32(A[i, k] / pivote)
+
+
+        # ------------------------------------------------
+        # Eliminación arriba y abajo
+        # ------------------------------------------------
+        for j in range(n):
+            if j == i:
+                continue
+            m = np.float32(A[j, i])
+            for k in range(i, n + 1):
+                A[j, k] = np.float32(A[j, k] - m * A[i, k])
+
+        logging.info(f"\n{A}")
+
+    solucion = A[:, -1]
+
+    print("\nGauss-Jordan:")
+    print('la solución es con aritmetica de 32 bits:\n')
+
+    return solucion
 # %%
 
 
