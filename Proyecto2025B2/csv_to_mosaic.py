@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import scipy
 from scipy.ndimage import generic_filter
 import matplotlib.pyplot as plt
 from stl import mesh
@@ -7,7 +8,7 @@ import os
 
 
 df = pd.read_csv(
-    r"C:\Users\sebas\Documents\EPN\2025-B\Metodos\Proyecto_II_Bim\output\elev_all_hgts.csv"
+    r"C:\Users\pc\Videos\2025B\metodos_numericos\Metodos_numericos_2025B_Ulloa-Francisco\Proyecto2025B2\output\elev_all_hgts.csv"
 )
 
 lat_min = df["lat"].min()
@@ -38,13 +39,13 @@ def nanmean_filter(values):
 
 raster_filled = generic_filter(raster, nanmean_filter, size=3)
 
-print("Min elev:", np.nanmin(raster_filled))
-print("Max elev:", np.nanmax(raster_filled))
+##print("Min elev:", np.nanmin(raster_filled))
+##print("Max elev:", np.nanmax(raster_filled))
 
-plt.imshow(raster_filled, cmap="terrain")
-plt.colorbar(label="Elevación (m)")
-plt.title("Mosaico Raster de Elevación")
-plt.show()
+#plt.imshow(raster_filled, cmap="terrain")
+#plt.colorbar(label="Elevación (m)")
+#plt.title("Mosaico Raster de Elevación")
+#plt.show()
 
 nrows, ncols = raster_filled.shape
 

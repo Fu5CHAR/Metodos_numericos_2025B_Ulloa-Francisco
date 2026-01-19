@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 # Ruta de la carpeta donde está el CSV
-ruta = r'C:\Users\sebas\Documents\EPN\2025-B\Metodos\Proyecto_II_Bim\output'
+ruta = r'C:\Users\pc\Videos\2025B\metodos_numericos\Metodos_numericos_2025B_Ulloa-Francisco\Proyecto2025B2\output'
 
 print(f"¿Existe la carpeta?: {os.path.exists(ruta)}")
 

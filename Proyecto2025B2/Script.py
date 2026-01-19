@@ -21,8 +21,8 @@ import sys
 
 # ---------------- CONFIGURACIÓN (modifica aquí si hace falta) ----------------
 # Usa rutas con / para mayor compatibilidad en la cadena literal
-HGT_DIR = Path("C:/Users/sebas/Documents/EPN/2025-B/Metodos/Proyecto_II_Bim/hgt")
-SCRIPT_DIR = Path("C:/Users/sebas/Documents/EPN/2025-B/Metodos/Proyecto_II_Bim")
+HGT_DIR = Path("C:/Users/pc/Videos/2025B/metodos_numericos/Metodos_numericos_2025B_Ulloa-Francisco/Proyecto2025B2/hgt")
+SCRIPT_DIR = Path("C:/Users/pc/Videos/2025B/metodos_numericos/Metodos_numericos_2025B_Ulloa-Francisco/Proyecto2025B2")
 OUT_DIR = SCRIPT_DIR / "output"
 OUT_CSV_NAME = "elev_all_hgts.csv"
 # ---------------------------------------------------------------------------
