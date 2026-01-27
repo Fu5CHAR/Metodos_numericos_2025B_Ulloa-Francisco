@@ -1,0 +1,4 @@
+2026-01-26 20:29:14 | INFO     | custom_logger.py:143 | 🔥 ERROR de prueba enviado desde el logger
+2026-01-26 20:29:14 | INFO     | custom_logger.py:143 | 🔥 ERROR de prueba enviado desde el logger
+2026-01-26 20:29:48 | ERROR    | custom_logger.py:143 | 🔥 ERROR de prueba enviado desde el logger
+2026-01-26 20:29:49 | ERROR    | custom_logger.py:143 | 🔥 ERROR de prueba enviado desde el logger

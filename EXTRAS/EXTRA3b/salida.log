@@ -1,0 +1,12 @@
+2026-01-26 20:31:03 | ERROR    | 1443787942.py:9 | prueba desde jupyter
+2026-01-26 20:45:10 | CRITICAL | 3229145432.py:1 | !!!!!!!!
+2026-01-26 21:01:47 | INFO     | 71576706.py:1 | mensaje en archivo
+2026-01-26 21:02:32 | DEBUG    | 1970062199.py:1 | prueba debug
+2026-01-26 21:03:07 | WARNING  | 2881943780.py:1 | prueba warning
+2026-01-26 21:03:40 | CRITICAL | 2813385120.py:1 | prueba critical
+2026-01-26 21:03:54 | ERROR    | 1655888829.py:1 | prueba error
+2026-01-26 21:43:59 | DEBUG    | 1970062199.py:1 | prueba debug
+2026-01-26 21:43:59 | WARNING  | 2881943780.py:1 | prueba warning
+2026-01-26 21:43:59 | INFO     | 71576706.py:1 | mensaje en archivo
+2026-01-26 21:43:59 | ERROR    | 1655888829.py:1 | prueba error
+2026-01-26 21:44:01 | CRITICAL | 2813385120.py:1 | prueba critical
