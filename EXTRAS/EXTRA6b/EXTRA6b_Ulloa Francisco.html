@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>EXTRA7b_Ulloa Francisco</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>EXTRA6b_Ulloa Francisco</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7510,7 +7510,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=377fb5b0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b66806df">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7518,257 +7518,157 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="-Escuela-Polit%C3%A9cnica-Nacional-"><center> Escuela Politécnica Nacional </center><a class="anchor-link" href="#-Escuela-Polit%C3%A9cnica-Nacional-">¶</a></h1><p><strong>Nombre:</strong> Francisco Ulloa<br/>
 <strong>Fecha:</strong> Quito, 28 de enero de 2026<br/>
-<strong>Tema:</strong> GPUs Hopper vs Blackwell  <br/>
+<strong>Tema:</strong> Factoreo en transformers  <br/>
 <strong>Repositorio:</strong><br/>
 <a href="https://github.com/Fu5CHAR/Metodos_numericos_2025B_Ulloa-Francisco/tree/main">https://github.com/Fu5CHAR/Metodos_numericos_2025B_Ulloa-Francisco/tree/main</a></p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de0a9e7a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1aa41adb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Comparaci%C3%B3n-de-arquitecturas-NVIDIA:-Hopper-vs-Blackwell">Comparación de arquitecturas NVIDIA: Hopper vs Blackwell<a class="anchor-link" href="#Comparaci%C3%B3n-de-arquitecturas-NVIDIA:-Hopper-vs-Blackwell">¶</a></h1><h2 id="1.-Diferencias-generales-entre-Hopper-y-Blackwell">1. Diferencias generales entre Hopper y Blackwell<a class="anchor-link" href="#1.-Diferencias-generales-entre-Hopper-y-Blackwell">¶</a></h2><h3 id="Arquitectura-Hopper">Arquitectura Hopper<a class="anchor-link" href="#Arquitectura-Hopper">¶</a></h3><ul>
-<li>Lanzada en 2022–2023.</li>
-<li>Orientada a <strong>IA generativa y computación de alto rendimiento (HPC)</strong>.</li>
-<li>Introduce el <strong>Transformer Engine</strong>, que usa múltiples precisiones (FP16, BF16, FP8).</li>
-<li>Incorpora <strong>Tensor Cores de cuarta generación</strong>.</li>
-<li>Soporta aceleración avanzada para entrenamiento de modelos grandes (LLM).</li>
+<h1 id="Uso-del-factoreo-de-matrices-en-arquitecturas-Transformer">Uso del factoreo de matrices en arquitecturas Transformer<a class="anchor-link" href="#Uso-del-factoreo-de-matrices-en-arquitecturas-Transformer">¶</a></h1><h2 id="%C2%BFQu%C3%A9-es-el-factoreo-de-matrices-en-Transformers?">¿Qué es el factoreo de matrices en Transformers?<a class="anchor-link" href="#%C2%BFQu%C3%A9-es-el-factoreo-de-matrices-en-Transformers?">¶</a></h2><p>En redes neuronales <strong>Transformer</strong>, el factoreo de matrices consiste en <strong>descomponer una matriz grande en el producto de matrices más pequeñas</strong>, normalmente de bajo rango:</p>
+$$
+W \in \mathbb{R}^{d \times d} \Rightarrow W \approx A \cdot B
+$$<p>donde:</p>
+<ul>
+<li>$$A \in \mathbb{R}^{d \times k}$$</li>
+<li>$$B \in \mathbb{R}^{k \times d}$$</li>
+<li>$$con k \ll d$$</li>
 </ul>
-<h3 id="Arquitectura-Blackwell">Arquitectura Blackwell<a class="anchor-link" href="#Arquitectura-Blackwell">¶</a></h3><ul>
-<li>Lanzada en 2024–2025.</li>
-<li>Sucesora directa de Hopper.</li>
-<li>Incorpora <strong>Tensor Cores de quinta generación</strong>.</li>
-<li>Introduce soporte nativo para <strong>precisiones ultra-bajas (FP6 y FP4)</strong>.</li>
-<li>Mayor eficiencia energética, más ancho de banda y mejor escalabilidad.</li>
-<li>Pensada para <strong>IA generativa masiva e inferencia a gran escala</strong>.</li>
+<p>Este enfoque aparece explícita o implícitamente en:</p>
+<ul>
+<li>Low-Rank Factorization</li>
+<li>Attention factorization</li>
+<li>Proyecciones Q, K y V</li>
+<li>Adapter layers</li>
+<li>LoRA (Low-Rank Adaptation)</li>
+<li>Transformers eficientes (Linformer, Performer, etc.)</li>
 </ul>
-<h3 id="Comparaci%C3%B3n-resumida">Comparación resumida<a class="anchor-link" href="#Comparaci%C3%B3n-resumida">¶</a></h3><table>
+<hr/>
+<h2 id="%C2%BFD%C3%B3nde-se-usa-el-factoreo-de-matrices-en-Transformers?">¿Dónde se usa el factoreo de matrices en Transformers?<a class="anchor-link" href="#%C2%BFD%C3%B3nde-se-usa-el-factoreo-de-matrices-en-Transformers?">¶</a></h2><h3 id="1.-Factoreo-en-el-mecanismo-de-atenci%C3%B3n">1. Factoreo en el mecanismo de atención<a class="anchor-link" href="#1.-Factoreo-en-el-mecanismo-de-atenci%C3%B3n">¶</a></h3><p>La atención estándar se define como:</p>
+$$
+\text{Attention}(Q, K, V) =
+\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$<p>Este cálculo tiene complejidad <strong>cuadrática</strong> $$O(n^2)$$ respecto a la longitud de la secuencia.</p>
+<p>Mediante factoreo o proyecciones de bajo rango:</p>
+<ul>
+<li>Se reduce el costo computacional</li>
+<li>Se reduce el consumo de memoria</li>
+<li>Se habilita el uso de secuencias más largas</li>
+</ul>
+<p>Ejemplo: <strong>Linformer</strong> aproxima la matriz de atención usando proyecciones de bajo rango.</p>
+<hr/>
+<h3 id="2.-Factoreo-en-capas-lineales-(Feed-Forward)">2. Factoreo en capas lineales (Feed-Forward)<a class="anchor-link" href="#2.-Factoreo-en-capas-lineales-(Feed-Forward)">¶</a></h3><p>Las capas Feed-Forward contienen matrices grandes:</p>
+$$
+W \in \mathbb{R}^{d_{model} \times d_{ff}}
+$$<p>Estas matrices pueden factorizarse como:</p>
+$$
+W = A \cdot B
+$$<p>Esto se usa para:</p>
+<ul>
+<li>Compresión del modelo</li>
+<li>Reducción de parámetros</li>
+<li>Aceleración de inferencia</li>
+</ul>
+<hr/>
+<h3 id="3.-Factoreo-en-fine-tuning-eficiente-(LoRA)">3. Factoreo en fine-tuning eficiente (LoRA)<a class="anchor-link" href="#3.-Factoreo-en-fine-tuning-eficiente-(LoRA)">¶</a></h3><p>En <strong>LoRA</strong>, los pesos originales del modelo se congelan y se añaden matrices de bajo rango entrenables:</p>
+$$
+W' = W + A \cdot B
+$$<p>Ventajas:</p>
+<ul>
+<li>Se entrenan pocos parámetros</li>
+<li>No se altera el modelo base</li>
+<li>Permite adaptar modelos grandes de forma eficiente</li>
+</ul>
+<hr/>
+<h2 id="Razones-para-usar-factoreo-de-matrices-en-Transformers">Razones para usar factoreo de matrices en Transformers<a class="anchor-link" href="#Razones-para-usar-factoreo-de-matrices-en-Transformers">¶</a></h2><h3 id="1.-Reducci%C3%B3n-del-costo-computacional">1. Reducción del costo computacional<a class="anchor-link" href="#1.-Reducci%C3%B3n-del-costo-computacional">¶</a></h3><ul>
+<li>Las multiplicaciones matriciales grandes son costosas</li>
+<li>El factoreo reduce la complejidad de:</li>
+</ul>
+$$
+O(d^2) \rightarrow O(d \cdot k)
+$$<hr/>
+<h3 id="2.-Ahorro-de-memoria">2. Ahorro de memoria<a class="anchor-link" href="#2.-Ahorro-de-memoria">¶</a></h3><ul>
+<li>Menor número de parámetros</li>
+<li>Menor uso de memoria de activaciones</li>
+<li>Clave para entrenamiento en GPUs</li>
+</ul>
+<hr/>
+<h3 id="3.-Escalabilidad-del-modelo">3. Escalabilidad del modelo<a class="anchor-link" href="#3.-Escalabilidad-del-modelo">¶</a></h3><ul>
+<li>Permite:<ul>
+<li>Modelos más grandes</li>
+<li>Secuencias más largas</li>
+<li>Mayor profundidad</li>
+</ul>
+</li>
+<li>Sin crecimiento explosivo del costo computacional</li>
+</ul>
+<hr/>
+<h3 id="4.-Regularizaci%C3%B3n-impl%C3%ADcita">4. Regularización implícita<a class="anchor-link" href="#4.-Regularizaci%C3%B3n-impl%C3%ADcita">¶</a></h3><ul>
+<li>El bajo rango actúa como restricción</li>
+<li>Reduce el sobreajuste</li>
+<li>Mejora la generalización</li>
+</ul>
+<hr/>
+<h3 id="5.-Eficiencia-en-fine-tuning">5. Eficiencia en fine-tuning<a class="anchor-link" href="#5.-Eficiencia-en-fine-tuning">¶</a></h3><ul>
+<li>Se entrenan solo matrices pequeñas</li>
+<li>Reduce tiempo y costo de entrenamiento</li>
+<li>Ideal para personalización de LLMs</li>
+</ul>
+<hr/>
+<h3 id="6.-Mejor-aprovechamiento-del-hardware">6. Mejor aprovechamiento del hardware<a class="anchor-link" href="#6.-Mejor-aprovechamiento-del-hardware">¶</a></h3><ul>
+<li>GPUs modernas están optimizadas para multiplicaciones matriciales pequeñas</li>
+<li>Mejor uso de Tensor Cores (FP16, FP8)</li>
+</ul>
+<hr/>
+<h2 id="Ventajas-pr%C3%A1cticas-del-factoreo-de-matrices">Ventajas prácticas del factoreo de matrices<a class="anchor-link" href="#Ventajas-pr%C3%A1cticas-del-factoreo-de-matrices">¶</a></h2><table>
 <thead>
 <tr>
-<th>Característica</th>
-<th>Hopper</th>
-<th>Blackwell</th>
+<th>Ventaja</th>
+<th>Impacto</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Generación Tensor Core</td>
-<td>4ª</td>
-<td>5ª</td>
+<td>Menos parámetros</td>
+<td>Modelos más ligeros</td>
 </tr>
 <tr>
-<td>Enfoque principal</td>
-<td>Entrenamiento IA + HPC</td>
-<td>IA generativa eficiente</td>
+<td>Menor latencia</td>
+<td>Inferencia más rápida</td>
 </tr>
 <tr>
-<td>Precisión mínima</td>
-<td>FP8</td>
-<td>FP4</td>
+<td>Menor consumo energético</td>
+<td>Mayor eficiencia</td>
 </tr>
 <tr>
-<td>Eficiencia energética</td>
-<td>Alta</td>
-<td>Muy alta</td>
+<td>Mayor escalabilidad</td>
+<td>Secuencias largas</td>
 </tr>
 <tr>
-<td>Escalabilidad</td>
-<td>Alta</td>
-<td>Superior</td>
+<td>Fine-tuning económico</td>
+<td>Menor costo</td>
+</tr>
+<tr>
+<td>Regularización</td>
+<td>Mejor generalización</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-<h2 id="2.-Diferencia-entre-FP32-y-TF32-(a-veces-llamado-TP32)">2. Diferencia entre FP32 y TF32 (a veces llamado TP32)<a class="anchor-link" href="#2.-Diferencia-entre-FP32-y-TF32-(a-veces-llamado-TP32)">¶</a></h2><h3 id="FP32-(Floating-Point-32)">FP32 (Floating Point 32)<a class="anchor-link" href="#FP32-(Floating-Point-32)">¶</a></h3><ul>
-<li>Formato estándar IEEE 754.</li>
-<li>Usa <strong>32 bits</strong>:<ul>
-<li>1 bit de signo</li>
-<li>8 bits de exponente</li>
-<li>23 bits de mantisa</li>
-</ul>
-</li>
-<li>Alta precisión numérica.</li>
-<li>Usado tradicionalmente en computación científica.</li>
-</ul>
-<h3 id="TF32-(TensorFloat-32)">TF32 (TensorFloat-32)<a class="anchor-link" href="#TF32-(TensorFloat-32)">¶</a></h3><ul>
-<li>Formato introducido por NVIDIA para <strong>Tensor Cores</strong>.</li>
-<li>Mantiene:<ul>
-<li>8 bits de exponente (mismo rango que FP32)</li>
-</ul>
-</li>
-<li>Reduce:<ul>
-<li>Mantisa a ~10 bits</li>
-</ul>
-</li>
-<li>No es un formato de almacenamiento, sino <strong>un modo de cálculo acelerado</strong>.</li>
-<li>Aumenta significativamente el rendimiento con mínima pérdida de precisión.</li>
-</ul>
-<h3 id="Comparaci%C3%B3n-FP32-vs-TF32">Comparación FP32 vs TF32<a class="anchor-link" href="#Comparaci%C3%B3n-FP32-vs-TF32">¶</a></h3><table>
-<thead>
-<tr>
-<th>Formato</th>
-<th>Bits totales</th>
-<th>Exponente</th>
-<th>Mantisa</th>
-<th>Precisión</th>
-<th>Rendimiento</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FP32</td>
-<td>32</td>
-<td>8</td>
-<td>23</td>
-<td>Alta</td>
-<td>Medio</td>
-</tr>
-<tr>
-<td>TF32</td>
-<td>32</td>
-<td>8</td>
-<td>~10</td>
-<td>Media</td>
-<td>Muy alto</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="3.-Representaciones-de-datos-soportadas">3. Representaciones de datos soportadas<a class="anchor-link" href="#3.-Representaciones-de-datos-soportadas">¶</a></h2><h3 id="Hopper">Hopper<a class="anchor-link" href="#Hopper">¶</a></h3><ul>
-<li><p><strong>CUDA Cores</strong></p>
+<h2 id="Conclusi%C3%B3n">Conclusión<a class="anchor-link" href="#Conclusi%C3%B3n">¶</a></h2><p>El factoreo de matrices es una <strong>estrategia clave</strong> en los Transformers modernos que permite:</p>
 <ul>
-<li>FP64</li>
-<li>FP32</li>
-<li>FP16</li>
-<li>BF16</li>
-<li>INT8</li>
+<li>Reducir costos computacionales</li>
+<li>Escalar modelos de lenguaje grandes</li>
+<li>Adaptar modelos sin reentrenamiento completo</li>
+<li>Aprovechar hardware especializado</li>
 </ul>
-</li>
-<li><p><strong>Tensor Cores</strong></p>
-<ul>
-<li>FP64</li>
-<li>TF32</li>
-<li>FP16</li>
-<li>BF16</li>
-<li>FP8</li>
-<li>INT8</li>
-</ul>
-</li>
-</ul>
-<h3 id="Blackwell">Blackwell<a class="anchor-link" href="#Blackwell">¶</a></h3><ul>
-<li><p><strong>CUDA Cores</strong></p>
-<ul>
-<li>FP64</li>
-<li>FP32</li>
-<li>FP16</li>
-<li>BF16</li>
-</ul>
-</li>
-<li><p><strong>Tensor Cores</strong></p>
-<ul>
-<li>FP64</li>
-<li>TF32</li>
-<li>FP16</li>
-<li>BF16</li>
-<li>FP8</li>
-<li>FP6</li>
-<li>FP4</li>
-<li>INT8</li>
-</ul>
-</li>
-</ul>
-<h3 id="Comparaci%C3%B3n-de-soporte">Comparación de soporte<a class="anchor-link" href="#Comparaci%C3%B3n-de-soporte">¶</a></h3><table>
-<thead>
-<tr>
-<th>Precisión</th>
-<th>Hopper</th>
-<th>Blackwell</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FP64</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>FP32</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>TF32</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>FP16</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>BF16</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>FP8</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>FP6</td>
-<td>✖</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>FP4</td>
-<td>✖</td>
-<td>✔</td>
-</tr>
-<tr>
-<td>INT8</td>
-<td>✔</td>
-<td>✔</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="4.-%C2%BFPor-qu%C3%A9-la-nueva-arquitectura-prefiere-menor-precisi%C3%B3n?">4. ¿Por qué la nueva arquitectura prefiere menor precisión?<a class="anchor-link" href="#4.-%C2%BFPor-qu%C3%A9-la-nueva-arquitectura-prefiere-menor-precisi%C3%B3n?">¶</a></h2><h3 id="1.-Mayor-rendimiento-computacional">1. Mayor rendimiento computacional<a class="anchor-link" href="#1.-Mayor-rendimiento-computacional">¶</a></h3><ul>
-<li>Menos bits permiten <strong>más operaciones por ciclo de reloj</strong>.</li>
-<li>Se incrementan los FLOPS efectivos.</li>
-</ul>
-<h3 id="2.-Menor-uso-de-memoria-y-ancho-de-banda">2. Menor uso de memoria y ancho de banda<a class="anchor-link" href="#2.-Menor-uso-de-memoria-y-ancho-de-banda">¶</a></h3><ul>
-<li>Datos más pequeños reducen:<ul>
-<li>Acceso a memoria</li>
-<li>Consumo de ancho de banda</li>
-</ul>
-</li>
-<li>Factor crítico en modelos grandes.</li>
-</ul>
-<h3 id="3.-Tolerancia-de-los-modelos-de-IA">3. Tolerancia de los modelos de IA<a class="anchor-link" href="#3.-Tolerancia-de-los-modelos-de-IA">¶</a></h3><ul>
-<li>Redes neuronales profundas <strong>no requieren precisión completa</strong> en la mayoría de capas.</li>
-<li>La reducción de precisión no degrada significativamente la calidad del modelo.</li>
-</ul>
-<h3 id="4.-Mejor-eficiencia-energ%C3%A9tica">4. Mejor eficiencia energética<a class="anchor-link" href="#4.-Mejor-eficiencia-energ%C3%A9tica">¶</a></h3><ul>
-<li>Menor consumo por operación.</li>
-<li>Reducción de costos operativos en centros de datos.</li>
-</ul>
-<hr/>
-<h2 id="Conclusi%C3%B3n">Conclusión<a class="anchor-link" href="#Conclusi%C3%B3n">¶</a></h2><ul>
-<li><strong>Hopper</strong> introduce la aceleración avanzada con FP8 y TF32 para IA moderna.</li>
-<li><strong>Blackwell</strong> extiende este enfoque hacia <strong>precisiones ultra-bajas (FP4, FP6)</strong>.</li>
-<li>El uso de menor precisión permite:<ul>
-<li>Más rendimiento</li>
-<li>Menor consumo energético</li>
-<li>Escalabilidad para IA generativa masiva</li>
-</ul>
-</li>
-</ul>
+<p>Sin factoreo de matrices, los Transformers modernos no serían viables a gran escala.</p>
 </div>
 </div>
 </div>
