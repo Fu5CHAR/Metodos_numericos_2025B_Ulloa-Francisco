@@ -1,0 +1,34 @@
+# Archivos exportados de impresión 3D
+*.stl
+
+# Archivos de datos grandes
+elevacion.npy
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.py~
+
+# Archivos de logs
+*.log
+
+# Archivos tipo .htg
+*.htg
+
+# Entornos virtuales
+.venv*/
+venv*/
+
+# Archivos de VSCode
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de backup
+*~ 
+*.bak
+*.swp

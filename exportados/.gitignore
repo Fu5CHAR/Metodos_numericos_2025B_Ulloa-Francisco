@@ -1,0 +1,20 @@
+*.stl
+# Ignorar archivo de datos grandes
+elevacion.npy
+# Ignorar archivos de datos grandes
+elevacion.npy
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+
+*.py~ 
+*.log
+
+# Ignorar archivos tipo .htg
+*.htg
+
+
+.venv*/
