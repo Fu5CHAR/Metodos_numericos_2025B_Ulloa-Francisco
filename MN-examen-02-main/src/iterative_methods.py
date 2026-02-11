@@ -28,7 +28,7 @@ import numpy as np
 
 # ####################################################################
 def gauss_jacobi(
-    *, A: np.ndarray, b: np.ndarray, x: np.ndarray, tol: float = 1e-5, max_iter: int = 5
+     A: np.ndarray, b: np.ndarray, x: np.ndarray, tol: float = 1e-5, max_iter: int = 5
 ) -> np.ndarray:
     """Resuelve el sistema de ecuaciones lineales Ax = b mediante el método de Jacobi.
 
@@ -76,7 +76,7 @@ def gauss_jacobi(
 
 # ####################################################################
 def gauss_seidel(
-    *, A: np.ndarray, b: np.ndarray, x: np.ndarray, tol: float = 1e-5, max_iter: int = 5
+    A: np.ndarray, b: np.ndarray, x: np.ndarray, tol: float = 1e-5, max_iter: int = 5
 ) -> np.ndarray:
     """Resuelve el sistema de ecuaciones lineales Ax = b mediante el método de Gauss-Seidel.
 
